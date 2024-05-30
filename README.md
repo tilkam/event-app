@@ -13,3 +13,5 @@ Starta frontend:
   npm run format
   npm run dev
 ```
+
+Frontend körs på http://localhost:5173/

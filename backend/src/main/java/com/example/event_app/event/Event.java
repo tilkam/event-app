@@ -2,6 +2,8 @@ package com.example.event_app.event;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 @MappedSuperclass
 public abstract class Event {
     @Id
@@ -12,8 +14,11 @@ public abstract class Event {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "date", nullable = false)
-    private String date;
+    @Column(name = "start_date", nullable = false)
+    private Date startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private Date endDate;
 
     @Column(name = "location")
     private String location;
@@ -28,8 +33,12 @@ public abstract class Event {
     }
 
 
-    public String getDate() {
-        return date;
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
     }
 
     public String getLocation() {
