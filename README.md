@@ -8,11 +8,8 @@ Applikationen körs på port 8080.
 
 Starta frontend:
 ```shell
-To run your project, navigate to the directory and run one of the following npm commands.
-
-- cd event-app
-- npm run android
-- npm run ios
-- npm run web
-
+  cd frontend/event-app
+  npm install
+  npm run format
+  npm run dev
 ```
