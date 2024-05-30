@@ -14,6 +14,7 @@ public class BasicEventService {
         basicEventRepository.save(event);
     }
 
+
     public Iterable<BasicEvent> findAll() {
         return basicEventRepository.findAll();
     }

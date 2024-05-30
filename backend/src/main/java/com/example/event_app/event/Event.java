@@ -32,6 +32,9 @@ public abstract class Event {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Date getStartDate() {
         return startDate;
