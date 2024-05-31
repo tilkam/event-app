@@ -4,12 +4,10 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/create">Create</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
@@ -24,10 +22,6 @@ header {
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
 nav {
   width: 100%;
@@ -36,16 +30,8 @@ nav {
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
 
 nav a {
-  display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
 }
@@ -67,7 +53,7 @@ nav a:first-of-type {
 
   header .wrapper {
     display: flex;
-    place-items: flex-start;
+    place-items: center;
     flex-wrap: wrap;
   }
 
@@ -78,6 +64,7 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+    position: sticky;
   }
 }
 </style>
