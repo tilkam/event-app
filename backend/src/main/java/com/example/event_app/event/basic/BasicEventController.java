@@ -10,8 +10,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
 public class BasicEventController {
-    @Autowired
-    private BasicEventService basicEventService;
+    private final BasicEventService basicEventService;
 
     public BasicEventController(BasicEventService basicEventService) {
         this.basicEventService = basicEventService;
