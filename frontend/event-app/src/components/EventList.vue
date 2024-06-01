@@ -3,6 +3,7 @@
     <h1>Events</h1>
     <div class="wrapper-event-list">
       <div v-for="event in events" :key="event.id">
+        <router-link :to="`/event/${event.id}`">
         <component
             :is="cardComponent"
           :name="event.name"
@@ -12,6 +13,7 @@
           :endDate="event.endDate"
           :startTime="event.startTime"
           :endTime="event.endTime"/>
+        </router-link>
         <button @click="deleteEvent(event.id)">Delete</button>
       </div>
 
