@@ -25,7 +25,6 @@ public class BasicEventController {
         return ResponseEntity.ok("Event created");
     }
     @DeleteMapping("/event/delete/{id}")
-    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.DELETE})
     public ResponseEntity<String> deleteEvent(@PathVariable Long id){
         basicEventService.delete(id);
         return ResponseEntity.ok("Event deleted");
