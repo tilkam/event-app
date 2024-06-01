@@ -2,7 +2,23 @@
   <div id="create-event">
     <h1>Create Event</h1>
     <div>
-      <EventForm @submit="createEvent"/>
+      <form @submit.prevent="createEvent">
+        <label for="name">Name</label>
+        <input type="text" id="name" v-model="name" required>
+        <label for="description">Description</label>
+        <textarea id="description" v-model="description"></textarea>
+        <label for="location">Location</label>
+        <input type="text" id="location" v-model="location" >
+        <label for="startDate">Start Date</label>
+        <input type="date" id="date" v-model="startDate" required>
+        <label for="startTime">Start Time</label>
+        <input type="time" id="startTime" v-model="startTime" required>
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" v-model="endDate">
+        <label for="endTime">End Time</label>
+        <input type="time" id="endTime" v-model="endTime">
+        <button type="submit">Save</button>
+      </form>
       <div id="create-success" v-if="creationSuccess">Event created successfully!</div>
     </div>
   </div>
@@ -10,10 +26,8 @@
 <script>
 
 import axios from 'axios';
-import EventForm from "@/components/EventForm.vue";
 
 export default {
-  components: {EventForm},
   data() {
     return {
       name: '',
@@ -27,16 +41,37 @@ export default {
     };
   },
   methods: {
-    async createEvent(event) {
+    async createEvent() {
+      const event = {
+        name: this.name,
+        description: this.description,
+        location: this.location,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        startTime: this.startTime,
+        endTime: this.endTime,
+      };
+
       try {
         const response = await axios.post('http://localhost:8080/event/create', event);
         console.log(response.data);
-        if (response.status === 200) {
+        if(response.status === 200) {
           this.creationSuccess = true;
+          this.resetForm();
         }
+
       } catch (error) {
         console.error(error);
       }
+    },
+    resetForm() {
+      this.name = '';
+      this.description = '';
+      this.location = '';
+      this.startDate = '';
+      this.endDate = '';
+      this.startTime = '';
+      this.endTime = '';
     },
   },
 };

@@ -2,42 +2,86 @@
   <div id="edit-event">
     <h1>Edit Event</h1>
     <div>
-      <EventForm :initialData="event" @submit="updateEvent"/>
+      <form @submit.prevent="updateEvent">
+        <label for="name">Name</label>
+        <input type="text" id="name" v-model="name" required>
+        <label for="description">Description</label>
+        <textarea id="description" v-model="description"></textarea>
+        <label for="location">Location</label>
+        <input type="text" id="location" v-model="location" >
+        <label for="startDate">Start Date</label>
+        <input type="date" id="date" v-model="startDate" required>
+        <label for="startTime">Start Time</label>
+        <input type="time" id="startTime" v-model="startTime" required>
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" v-model="endDate">
+        <label for="endTime">End Time</label>
+        <input type="time" id="endTime" v-model="endTime">
+        <button type="submit">Save</button>
+      </form>
       <div id="update-success" v-if="creationSuccess">Event updated successfully!</div>
     </div>
   </div>
 </template>
 
 <script>
-import {useRoute} from "vue-router";
-import EventForm from "@/components/EventForm.vue";
 import axios from 'axios';
 export default {
-  components: {EventForm},
   data() {
     return {
-      event: {},
+      name: '',
+      description: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      startTime: '',
+      endTime: '',
       creationSuccess: false,
     };
   },
   async mounted(){
-    const route = useRoute();
-    console.log(route.params.id);
-    const response = await axios.get(`http://localhost:8080/event/${route.params.id}`);
-    this.event = response.data;
+    const response = await axios.get(`http://localhost:8080/event/${this.$route.params.id}`);
+    this.name = response.data.name;
+    this.description = response.data.description;
+    this.location = response.data.location;
+    this.startDate = response.data.startDate;
+    this.endDate = response.data.endDate;
+    this.startTime = response.data.startTime;
+    this.endTime = response.data.endTime;
   },
   methods: {
-    async updateEvent(event) {
+    async updateEvent() {
+      const event = {
+        name: this.name,
+        description: this.description,
+        location: this.location,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        startTime: this.startTime,
+        endTime: this.endTime,
+      };
+
       try {
-      console.log(event);
-        const response = await axios.put(`http://localhost:8080/event/update/${event.id}`, event);
+        console.log(this.$route.params.id)
+        const response = await axios.put(`http://localhost:8080/event/update/${this.$route.params.id}`, event);
         console.log(response.data);
         if(response.status === 200) {
           this.creationSuccess = true;
+          this.resetForm();
         }
+
       } catch (error) {
         console.error(error);
       }
+    },
+    resetForm() {
+      this.name = '';
+      this.description = '';
+      this.location = '';
+      this.startDate = '';
+      this.endDate = '';
+      this.startTime = '';
+      this.endTime = '';
     },
   },
 };
