@@ -4,6 +4,7 @@
     <ul>
       <li v-for="event in events" :key="event.id">
         {{ event.name }}
+        <button @click="deleteEvent(event.id)">Delete</button>
       </li>
     </ul>
   </div>
@@ -26,6 +27,11 @@ export default {
     async fetchEvents() {
       const response = await axios.get('http://localhost:8080/event/all');
       this.events = response.data;
+    },
+    deleteEvent(id) {
+      axios.delete(`http://localhost:8080/event/delete/${id}`).then(() => {
+        this.fetchEvents();
+      });
     },
   },
 };

@@ -19,4 +19,8 @@ public class BasicEventService {
         return basicEventRepository.findAll();
     }
 
+    public void delete(Long id){
+        basicEventRepository.deleteById(id);
+    }
+
 }
