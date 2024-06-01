@@ -1,22 +1,37 @@
 <template>
   <div>
     <h1>Events</h1>
-    <ul>
-      <li v-for="event in events" :key="event.id">
-        {{ event.name }}
+    <div class="wrapper-event-list">
+      <div v-for="event in events" :key="event.id">
+        <component
+            :is="cardComponent"
+          :name="event.name"
+          :description="event.description"
+          :location="event.location"
+          :startDate="event.startDate"
+          :endDate="event.endDate"
+          :startTime="event.startTime"
+          :endTime="event.endTime"/>
         <button @click="deleteEvent(event.id)">Delete</button>
-      </li>
-    </ul>
+      </div>
+
+  </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import EventCard from "@/components/EventCard.vue";
 
 export default {
+  components: {
+    EventCard,
+  },
+  props: ['cardComponent'],
   data() {
     return {
       events: [],
+
     };
   },
 
@@ -36,3 +51,11 @@ export default {
   },
 };
 </script>
+<style>
+  .wrapper-event-list{
+    margin: 0 auto;
+    max-width: 800px;
+    gap: 1rem;
+  }
+
+</style>
