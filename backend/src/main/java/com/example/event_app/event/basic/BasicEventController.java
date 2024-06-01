@@ -1,7 +1,5 @@
 package com.example.event_app.event.basic;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,10 +28,6 @@ public class BasicEventController {
     @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.DELETE})
     public ResponseEntity<String> deleteEvent(@PathVariable Long id){
         basicEventService.delete(id);
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Access-Control-Allow-Origin", "*");
-
-        return ResponseEntity.ok().headers(responseHeaders).body("Event deleted");
+        return ResponseEntity.ok("Event deleted");
     }
 }

@@ -17,11 +17,11 @@ public abstract class Event {
     @Column(name = "start_date", nullable = false)
     private Date startDate;
 
-    @Column(name = "end_date")
-    private Date endDate;
-
     @Column(name = "start_time", nullable = false)
     private String startTime;
+
+    @Column(name = "end_date")
+    private Date endDate;
 
     @Column(name = "end_time")
     private String endTime;

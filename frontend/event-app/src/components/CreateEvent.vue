@@ -12,7 +12,7 @@
         <label for="startDate">Start Date</label>
         <input type="date" id="date" v-model="startDate" required>
         <label for="startTime">Start Time</label>
-        <input type="time" id="startTime" v-model="startTime">
+        <input type="time" id="startTime" v-model="startTime" required>
         <label for="endDate">End Date</label>
         <input type="date" id="endDate" v-model="endDate">
         <label for="endTime">End Time</label>
