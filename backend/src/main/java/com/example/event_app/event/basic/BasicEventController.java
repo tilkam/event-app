@@ -30,4 +30,17 @@ public class BasicEventController {
         basicEventService.delete(id);
         return ResponseEntity.ok("Event deleted");
     }
+    @PutMapping("/event/update/{id}")
+    public ResponseEntity<String> updateEvent(@PathVariable Long id, @RequestBody BasicEvent event){
+        BasicEvent updateEvent = basicEventService.findById(id);
+        updateEvent.setName(event.getName());
+        updateEvent.setDescription(event.getDescription());
+        updateEvent.setStartDate(event.getStartDate());
+        updateEvent.setEndDate(event.getEndDate());
+        updateEvent.setStartTime(event.getStartTime());
+        updateEvent.setEndTime(event.getEndTime());
+        updateEvent.setLocation(event.getLocation());
+        basicEventService.update(updateEvent);
+        return ResponseEntity.ok("Event updated");
+    }
 }

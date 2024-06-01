@@ -23,4 +23,12 @@ public class BasicEventService {
         basicEventRepository.deleteById(id);
     }
 
+    public void update(BasicEvent event) {
+        basicEventRepository.save(event);
+    }
+
+    public BasicEvent findById(Long id) {
+        return basicEventRepository.findById(id).get();
+    }
 }
+
