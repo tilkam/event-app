@@ -45,7 +45,7 @@ nav a:first-of-type {
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
   }
-  
+
   header .wrapper {
     display: flex;
     place-items: center;
