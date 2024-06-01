@@ -12,13 +12,39 @@
 
 </template>
 <script setup>
-import axios from "axios";
+import { defineProps, onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import axios from 'axios';
 
-defineProps(['id'])
+const id = ref('');
+const name = ref('');
+const description = ref('');
+const location = ref('');
+const startDate = ref('');
+const endDate = ref('');
+const startTime = ref('');
+const endTime = ref('');
+
+defineProps(['id', 'name', 'description', 'location', 'startDate', 'endDate', 'startTime', 'endTime'])
+const route = useRoute();
+
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return `${date.getDate()}/${date.getMonth() + 1}`;
 };
+
+const fetchEvent = async () => {
+  const response = await axios.get(`http://localhost:8080/event/${route.params.id}`);
+  name.value = response.data.name;
+  description.value = response.data.description;
+  location.value = response.data.location;
+  startDate.value = response.data.startDate;
+  endDate.value = response.data.endDate;
+  startTime.value = response.data.startTime;
+  endTime.value = response.data.endTime;
+};
+
+onMounted(() => fetchEvent());
 </script>
 
 <style>

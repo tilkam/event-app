@@ -43,4 +43,8 @@ public class BasicEventController {
         basicEventService.update(updateEvent);
         return ResponseEntity.ok("Event updated");
     }
+    @GetMapping("/event/{id}")
+    public BasicEvent updateEvent(@PathVariable Long id){
+        return basicEventService.findById(id);
+    }
 }

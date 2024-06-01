@@ -28,7 +28,7 @@ public class BasicEventService {
     }
 
     public BasicEvent findById(Long id) {
-        return basicEventRepository.findById(id).get();
+        return basicEventRepository.findById(id).orElse(null);
     }
 }
 
