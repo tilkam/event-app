@@ -7,7 +7,7 @@ import java.sql.Date;
 @MappedSuperclass
 public abstract class Event {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -25,6 +25,9 @@ public abstract class Event {
 
     @Column(name = "description")
     private String description;
+
+    public Event() {
+    }
     public Long getId() {
         return id;
     }
@@ -50,5 +53,25 @@ public abstract class Event {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

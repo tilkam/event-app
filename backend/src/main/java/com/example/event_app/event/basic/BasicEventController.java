@@ -16,7 +16,7 @@ public class BasicEventController {
         this.basicEventService = basicEventService;
     }
     @GetMapping("/event/all")
-    public List<BasicEvent> getBasicAllEvents() {
+    public List<BasicEvent> getAllBasicEvents() {
         Iterable<BasicEvent> event = basicEventService.findAll();
         return (List<BasicEvent>) event;
     }
@@ -27,7 +27,7 @@ public class BasicEventController {
         return ResponseEntity.ok("Event created");
     }
     @DeleteMapping("/event/delete/{id}")
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.DELETE})
     public ResponseEntity<String> deleteEvent(@PathVariable Long id){
         basicEventService.delete(id);
 
