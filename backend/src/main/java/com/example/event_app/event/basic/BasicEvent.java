@@ -9,11 +9,13 @@ import java.sql.Date;
 @Entity
 @Table(name = "basic_event")
 public class BasicEvent extends Event {
-  public void createBasicEvent(String name, String startDate, String endDate, String location, String description) {
+  public void createBasicEvent(String name, String startDate, String endDate, String startTime, String endTime, String location, String description) {
     this.setName(name);
     this.setStartDate(Date.valueOf(startDate));
     this.setEndDate(Date.valueOf(endDate));
     this.setLocation(location);
     this.setDescription(description);
+    this.setStartTime(startTime);
+    this.setEndTime(endTime);
   }
 }

@@ -17,9 +17,14 @@ public abstract class Event {
     @Column(name = "start_date", nullable = false)
     private Date startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
     private Date endDate;
 
+    @Column(name = "start_time", nullable = false)
+    private String startTime;
+
+    @Column(name = "end_time")
+    private String endTime;
     @Column(name = "location")
     private String location;
 
@@ -73,5 +78,21 @@ public abstract class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

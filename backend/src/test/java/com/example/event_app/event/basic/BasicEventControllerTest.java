@@ -29,7 +29,7 @@ class BasicEventControllerTest {
     @Test
     void getAllBasicEvents() throws Exception {
         BasicEvent event = new BasicEvent();
-        event.createBasicEvent("name", "2024-06-01", "2022-06-01", "location", "description");
+        event.createBasicEvent("name", "2024-06-01", "2024-06-01", "17:00","18.00","location", "description");
 
         List<BasicEvent> events = Collections.singletonList(event);
         Mockito.when(basicEventService.findAll()).thenReturn(events);
@@ -42,7 +42,7 @@ class BasicEventControllerTest {
     @Test
     void createEvent() throws Exception {
         BasicEvent event = new BasicEvent();
-        event.createBasicEvent("name", "2024-06-01", "2024-06-01", "location", "description");
+        event.createBasicEvent("name", "2024-06-01", "2024-06-01", "17:00","18.00","location", "description");
 
         mockMvc.perform(post("/event/create")
                         .contentType(MediaType.APPLICATION_JSON)
